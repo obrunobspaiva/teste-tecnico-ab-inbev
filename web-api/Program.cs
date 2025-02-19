@@ -8,6 +8,7 @@ var jwtConfig = new JwtConfig();
 builder.Configuration.GetSection("JwtConfig").Bind(jwtConfig);
 builder.Services.AddSingleton(jwtConfig);
 builder.Services.AddSingleton<AuthService>();
+builder.Services.AddHttpClient<OpenAIService>();
 builder.Services.AddControllers();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
