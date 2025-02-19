@@ -1,9 +1,12 @@
 using ChatABInBev.Api.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/chat")]
 [ApiController]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class ChatController : ControllerBase
 {
     private readonly OpenAIService _openAIService;
