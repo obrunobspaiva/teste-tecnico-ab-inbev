@@ -14,6 +14,14 @@ mat-card {
     backdrop-filter: blur(10px);
 }
 
+/* mat-form-field {
+    height: 35px;
+} */
+
+/* mat-form-field input {
+    height: 10px;
+} */
+
 .full-width {
     width: 100%;
 }

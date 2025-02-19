@@ -4,9 +4,9 @@
 
         <div class="chat-box">
             @for (msg of chatHistory; track $index) {
-            <div class="message" [ngClass]="{'user-message': msg.user, 'bot-message': !msg.user}">
-                <p><strong>Você:</strong> {{ msg.user }}</p>
-                <p><strong>ChatGPT:</strong> {{ msg.bot }}</p>
+            <div class="message">
+                <p class="user-message"><strong>Você:</strong> {{ msg.user }}</p>
+                <p class="bot-message"><strong>ChatGPT:</strong> {{ msg.bot }}</p>
             </div>
             }
         </div>
