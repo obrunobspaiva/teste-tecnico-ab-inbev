@@ -21,7 +21,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe({
       next: (response) => {
         this.authService.setToken(response.token);
-        this.router.navigate(['/chat']); // Redireciona após login bem-sucedido
+        this.router.navigate(['/chat']);
       },
       error: () => {
         this.errorMessage = 'Credenciais inválidas. Tente novamente.';
