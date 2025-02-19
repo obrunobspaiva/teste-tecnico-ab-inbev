@@ -1,1 +1,18 @@
-<p>chat works!</p>
+<div class="container">
+    <h2 class="text-center">IA da AB InBev</h2>
+
+    <div class="chat-box">
+        @for (msg of chatHistory; track $index) {
+        <div class="message">
+            <p><strong>Você:</strong> {{ msg.user }}</p>
+            <p><strong>ChatGPT:</strong> {{ msg.bot }}</p>
+        </div>
+        }
+    </div>
+
+    <div class="input-group mt-3">
+        <input [(ngModel)]="userMessage" name="userMessage" type="text" class="form-control"
+            placeholder="Digite sua mensagem...">
+        <button class="btn btn-primary" (click)="sendMessage()">Enviar</button>
+    </div>
+</div>
