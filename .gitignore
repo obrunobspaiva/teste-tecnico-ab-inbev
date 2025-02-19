@@ -128,3 +128,38 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Ignore arquivos do build
+bin/
+obj/
+
+# Ignore pacotes do NuGet
+*.nupkg
+*.snupkg
+
+# Ignore arquivos do Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore arquivos do Rider
+.idea/
+*.sln.iml
+
+# Ignore logs e debug
+logs/
+*.log
+
+# Ignore configurações específicas de ambiente
+.env
+appsettings.Development.json
+secrets.json
+
+# Ignore arquivos de lock e dependências
+project.lock.json
+
+# Ignore arquivos do sistema operacional
+.DS_Store
+Thumbs.db
