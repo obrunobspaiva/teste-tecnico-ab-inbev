@@ -1,18 +1,22 @@
 <div class="container">
-    <h2 class="text-center">IA da AB InBev</h2>
+    <mat-card>
+        <h2 class="text-center">Chat com ChatGPT</h2>
 
-    <div class="chat-box">
-        @for (msg of chatHistory; track $index) {
-        <div class="message">
-            <p><strong>Você:</strong> {{ msg.user }}</p>
-            <p><strong>ChatGPT:</strong> {{ msg.bot }}</p>
+        <div class="chat-box">
+            @for (msg of chatHistory; track $index) {
+            <div class="message">
+                <p class="user-message"><strong>Você:</strong> {{ msg.user }}</p>
+                <p class="bot-message"><strong>ChatGPT:</strong> {{ msg.bot }}</p>
+            </div>
+            }
         </div>
-        }
-    </div>
 
-    <div class="input-group mt-3">
-        <input [(ngModel)]="userMessage" name="userMessage" type="text" class="form-control"
-            placeholder="Digite sua mensagem...">
-        <button class="btn btn-primary" (click)="sendMessage()">Enviar</button>
-    </div>
+        <div class="input-group">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Envie uma mensagem para o ChatGPT</mat-label>
+                <input matInput [(ngModel)]="userMessage" (keyup.enter)="sendMessage()">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="sendMessage()">Enviar</button>
+        </div>
+    </mat-card>
 </div>

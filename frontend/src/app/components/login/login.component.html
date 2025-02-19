@@ -1,17 +1,21 @@
 <div class="container">
-    <h2>Login</h2>
-    <form (submit)="login()">
-        <div class="mb-3">
-            <label class="form-label">Usuário</label>
-            <input type="text" class="form-control" [(ngModel)]="username" name="username" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Senha</label>
-            <input type="password" class="form-control" [(ngModel)]="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
-        @if (errorMessage) {
-        <p class="text-danger mt-2">{{ errorMessage }}</p>
-        }
-    </form>
-</div>
+    <mat-card>
+      <h2 class="text-center">Login</h2>
+      <mat-form-field appearance="outline">
+        <mat-label>Usuário</mat-label>
+        <input matInput type="text" [(ngModel)]="username" name="username" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" [(ngModel)]="password" name="password" required>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" class="btn-primary" (click)="login()">Entrar</button>
+      
+      @if (errorMessage) {
+      <p class="text-danger mt-2">{{ errorMessage }}</p>
+      }
+    </mat-card>
+  </div>
+  
