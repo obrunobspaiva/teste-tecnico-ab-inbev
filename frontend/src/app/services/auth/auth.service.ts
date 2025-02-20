@@ -12,8 +12,8 @@ export class AuthService {
 
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {}
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl, { username, password });
+  login(username: string, passwordHash: string): Observable<any> {
+    return this.http.post<any>(this.apiUrl, { username, passwordHash });
   }
 
   setToken(token: string): void {

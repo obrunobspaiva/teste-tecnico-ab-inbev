@@ -16,12 +16,15 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public IActionResult Login([FromBody] User user)
     {
-        if (user.Username == "admin" && user.Password == "password")
+        try
         {
             var token = _authService.GenerateJwtToken(user.Username);
             return Ok(new { token });
         }
-        return Unauthorized();
+        catch (Exception ex)
+        {
+            return Unauthorized(ex);
+        }
     }
 
     [HttpGet("protected")]
