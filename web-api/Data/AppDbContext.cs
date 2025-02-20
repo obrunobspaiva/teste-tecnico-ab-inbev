@@ -1,3 +1,4 @@
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 public class AppDbContext : DbContext
@@ -10,5 +11,9 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.HasDefaultSchema("public");
+
+        modelBuilder.Entity<User>().ToTable("Users");
+        modelBuilder.Entity<ChatMessage>().ToTable("ChatMessages");
     }
 }

@@ -19,4 +19,16 @@ public class UserController : ControllerBase
         var result = await _mediator.Send(command);
         return Ok(result);
     }
+
+    [HttpGet("by-username/{username}")]
+    public async Task<IActionResult> GetUserByUsername(string username)
+    {
+        var query = new GetUserByUsernameCommand(username);
+        var user = await _mediator.Send(query);
+
+        if (user == null)
+            return NotFound("Usuário não encontrado.");
+
+        return Ok(user);
+    }
 }
