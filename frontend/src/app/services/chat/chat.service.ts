@@ -8,9 +8,13 @@ import { Observable } from 'rxjs';
 export class ChatService {
   private apiUrl = 'http://localhost:5086/api/chat';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  sendMessage(userMessage: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl, { userMessage });
+  getMessagesByUser(userId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/GetMessages/${userId}`);
+  }
+
+  sendMessage(userMessage: string, userId: string | null): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/SendMessage`, { userMessage, userId });
   }
 }

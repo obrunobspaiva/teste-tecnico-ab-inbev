@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-chat',
@@ -16,18 +17,39 @@ import { CommonModule } from '@angular/common';
 })
 export class ChatComponent {
   userMessage: string = '';
-  chatHistory: { user: string, bot: string }[] = [];
+  chatHistory: { userMessage: string, chatGPTResponse: string }[] = [];
+  userId: string | null = '';
 
-  constructor(private chatService: ChatService) {}
+  constructor(private chatService: ChatService, private authService: AuthService) {}
+
+  ngOnInit() {
+    this.userId = this.authService.getUserId();
+    if (this.userId) {
+      this.loadMessages();
+    } else {
+      console.error('Erro: Usuário não autenticado.');
+    }
+  }
+
+  loadMessages() {
+    this.chatService.getMessagesByUser(this.userId!).subscribe(
+      (messages) => {
+        this.chatHistory = messages.reverse();
+      },
+      (error) => {
+        console.error('Erro ao carregar mensagens:', error);
+      }
+    );
+  }
 
   sendMessage() {
     if (!this.userMessage.trim()) return;
 
     const userMessage = this.userMessage;
-    this.chatHistory.push({ user: userMessage, bot: 'Pensando...' });
+    this.chatHistory.push({ userMessage: userMessage, chatGPTResponse: 'Pensando...' });
 
-    this.chatService.sendMessage(userMessage).subscribe(response => {
-      this.chatHistory[this.chatHistory.length - 1].bot = response.chatGPTResponse;
+    this.chatService.sendMessage(userMessage, this.authService.getUserId()).subscribe(response => {
+      this.chatHistory[this.chatHistory.length - 1].chatGPTResponse = response.chatGPTResponse;
     });
 
     this.userMessage = '';

@@ -24,8 +24,6 @@ export class RegisterComponent {
   constructor(private userService: UserService, private router: Router) {}
 
   register() {
-    console.log('username: ', this.username)
-    console.log('password: ', this.password)
     this.userService.register(this.username, this.password).subscribe(
       () => {
         alert('Cadastro realizado com sucesso!');

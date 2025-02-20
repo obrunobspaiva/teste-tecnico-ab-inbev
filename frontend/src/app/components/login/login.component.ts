@@ -18,13 +18,13 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class LoginComponent {
   username = '';
-  passwordHash = '';
+  password = '';
   errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
-    this.authService.login(this.username, this.passwordHash).subscribe({
+    this.authService.login(this.username, this.password).subscribe({
       next: (response) => {
         this.authService.setToken(response.token);
         this.router.navigate(['/chat']);
