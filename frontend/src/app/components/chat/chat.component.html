@@ -1,0 +1,22 @@
+<div class="container">
+    <mat-card>
+        <h2 class="text-center">Chat com ChatGPT</h2>
+
+        <div class="chat-box">
+            @for (msg of chatHistory; track $index) {
+            <div class="message">
+                <p class="user-message"><strong>Você:</strong> {{ msg.userMessage }}</p>
+                <p class="bot-message"><strong>ChatGPT:</strong> {{ msg.chatGPTResponse }}</p>
+            </div>
+            }
+        </div>
+
+        <div class="input-group">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Envie uma mensagem para o ChatGPT</mat-label>
+                <input matInput [(ngModel)]="userMessage" (keyup.enter)="sendMessage()">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="sendMessage()">Enviar</button>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+  <mat-card>
+    <h2 class="text-center">Login</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Usuário</mat-label>
+      <input matInput type="text" [(ngModel)]="username" name="username" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input matInput type="password" [(ngModel)]="password" name="password" required>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" class="btn-primary" (click)="login()">
+        <mat-icon>login</mat-icon> Entrar
+      </button>
+      
+      <button mat-raised-button color="accent" class="btn-secondary" (click)="goToRegister()">
+        <mat-icon>person_add</mat-icon> Cadastre-se
+      </button>
+    </div>
+
+    @if (errorMessage) {
+    <p class="text-danger mt-2">{{ errorMessage }}</p>
+    }
+
+  </mat-card>
+</div>

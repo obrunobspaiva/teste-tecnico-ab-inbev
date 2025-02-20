@@ -154,6 +154,7 @@ logs/
 
 # Ignore configurações específicas de ambiente
 .env
+appsettings.json
 appsettings.Development.json
 secrets.json
 
