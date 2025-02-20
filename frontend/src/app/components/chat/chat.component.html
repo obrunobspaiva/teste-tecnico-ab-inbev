@@ -5,8 +5,8 @@
         <div class="chat-box">
             @for (msg of chatHistory; track $index) {
             <div class="message">
-                <p class="user-message"><strong>Você:</strong> {{ msg.user }}</p>
-                <p class="bot-message"><strong>ChatGPT:</strong> {{ msg.bot }}</p>
+                <p class="user-message"><strong>Você:</strong> {{ msg.userMessage }}</p>
+                <p class="bot-message"><strong>ChatGPT:</strong> {{ msg.chatGPTResponse }}</p>
             </div>
             }
         </div>
