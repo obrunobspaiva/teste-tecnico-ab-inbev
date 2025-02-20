@@ -7,23 +7,24 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule],
+  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatIconModule],
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   username = '';
-  password = '';
+  passwordHash = '';
   errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
-    this.authService.login(this.username, this.password).subscribe({
+    this.authService.login(this.username, this.passwordHash).subscribe({
       next: (response) => {
         this.authService.setToken(response.token);
         this.router.navigate(['/chat']);
@@ -32,5 +33,9 @@ export class LoginComponent {
         this.errorMessage = 'Credenciais inválidas. Tente novamente.';
       }
     });
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 }
