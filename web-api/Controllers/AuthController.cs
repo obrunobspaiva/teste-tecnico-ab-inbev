@@ -1,4 +1,5 @@
 
+using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,18 +8,22 @@ using Microsoft.AspNetCore.Mvc;
 public class AuthController : ControllerBase
 {
     private readonly AuthService _authService;
+    private readonly IUserRepository _userRepository;
 
-    public AuthController(AuthService authService)
+    public AuthController(AuthService authService, IUserRepository userRepository)
     {
         _authService = authService;
+        _userRepository = userRepository;
     }
 
     [HttpPost("login")]
-    public IActionResult Login([FromBody] User user)
+    public async Task<IActionResult> Login([FromBody] User request)
     {
         try
         {
-            var token = _authService.GenerateJwtToken(user.Username);
+            var user = await _userRepository.GetUserByUsernameAsync(request.Username);
+
+            var token = _authService.GenerateJwtToken(user);
             return Ok(new { token });
         }
         catch (Exception ex)
